@@ -1,0 +1,112 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scene {
+  height: 500px;
+  width: 200px;
+  perspective: 500px;
+}
+
+.cylinder {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateY(25deg) translateZ(-125px);
+}
+
+.face,
+.right-face,
+.left-face {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-color: rgba(123, 42, 200, 0.1);
+  border-radius: 50%;
+  opacity: 0.1;
+}
+
+.right-face {
+  transform: rotateY(90deg) translateZ(125px);
+  background-color: rgb(251, 255, 1);
+  opacity: 0.5;
+}
+
+.left-face {
+  transform: rotateY(-90deg) translateZ(125px);
+  background-color: rgb(251, 255, 1);
+  opacity: 0.5;
+}
+
+.carousel,
+.chosen-word-area {
+  height: 500px;
+  width: 100%;
+  position: absolute;
+  transform-style: preserve-3d;
+  transition: transform 1s;
+}
+
+.carousel ul {
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+.chosen-word-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateX(125px);
+}
+
+.chosen-word {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.carousel__cell {
+  position: absolute;
+  padding: 0 15px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(250, 4, 4);
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.carousel__cell:nth-child(1)::before,
+.carousel__cell:nth-child(2)::before,
+.carousel__cell:nth-child(3)::before,
+.carousel__cell:nth-child(4)::before,
+.carousel__cell:nth-child(5)::before,
+.carousel__cell:nth-child(6)::before,
+.carousel__cell:nth-child(7)::before,
+.carousel__cell:nth-child(8)::before,
+.carousel__cell:nth-child(9)::before {
+  content: "";
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+  opacity: 0.5;
+}
