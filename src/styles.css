@@ -1,3 +1,8 @@
+:root {
+  --cylinder-height: 200px;
+  --cylinder-width: 200px;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -12,8 +17,8 @@ body {
 }
 
 .scene {
-  height: 500px;
-  width: 200px;
+  height: var(--cylinder-height);
+  width: var(--cylinder-width);
   perspective: 500px;
 }
 
@@ -22,7 +27,13 @@ body {
   width: 100%;
   position: relative;
   transform-style: preserve-3d;
-  transform: rotateY(25deg) translateZ(-125px);
+  transform: rotateY(45deg) translateZ(-125px);
+}
+
+.cylinder-container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
 }
 
 .face,
@@ -48,9 +59,16 @@ body {
   opacity: 0.5;
 }
 
+.carousel-container {
+  position: absolute;
+  height: var(--cylinder-height);
+  width: var(--cylinder-width);
+  transform-style: preserve-3d;
+}
+
 .carousel,
 .chosen-word-area {
-  height: 500px;
+  height: 100%;
   width: 100%;
   position: absolute;
   transform-style: preserve-3d;
@@ -63,7 +81,7 @@ body {
 }
 
 .chosen-word-area {
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   transform: translateX(125px);

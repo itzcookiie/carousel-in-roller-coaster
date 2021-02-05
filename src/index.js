@@ -1,6 +1,6 @@
 import "./styles.css";
 
-const cylinder = document.querySelector(".cylinder");
+const cylinderContainer = document.querySelector(".cylinder-container");
 const rightFace = document.querySelector(".right-face");
 
 for (let i = 0; i < 250; i++) {
@@ -11,7 +11,7 @@ function createCylinderFace(distance) {
   const face = document.createElement("div");
   face.classList.add("face");
   face.style.transform = `translateX(${distance}px) rotateY(-90deg) translateZ(125px)`;
-  cylinder.insertBefore(face, rightFace);
+  cylinderContainer.insertBefore(face, rightFace);
 }
 
 const allCarouselCells = document.querySelectorAll(".carousel__cell"),
@@ -25,13 +25,15 @@ const allCarouselCells = document.querySelectorAll(".carousel__cell"),
   cellWidth = 100,
   cellSize = cellWidth + cellPadding * 2,
   angle = 360 / numOfCells,
-  tZ = Math.round(cellSize / 2 / Math.tan(Math.PI / numOfCells)),
+  cylinderDepth = parseInt(getComputedStyle(cylinderContainer).height),
+  // Move carousel cells by half the depth
+  tZ = cylinderDepth / 2,
+  // tZ = Math.round(cellSize / 2 / Math.tan(Math.PI / numOfCells)),
   offset = 0,
   chosenWordAnimationTime = 500;
 let rotation = 0;
 
 // chosenWordArea.style.transform = `rotateY(${offset}deg) translateZ(${-tZ}px)`;
-carouselObject.style.transform = `rotateY(${offset}deg) translateX(-50px)`;
 
 [...allCarouselCells].map((cell, index) => {
   cell.style.transform = `rotateX(${index * angle}deg) translateZ(${tZ}px)`;
@@ -43,7 +45,7 @@ prevBtn.addEventListener("click", moveCarousel);
 
 function moveCarousel(e) {
   e.target.id === "next" ? (rotation -= angle) : (rotation += angle);
-  carouselObject.style.transform = `rotateY(${offset}deg) rotateX(${rotation}deg) translateX(-50px)`;
+  carouselObject.style.transform = `rotateY(${offset}deg) rotateX(${rotation}deg)`;
   const displayedWord = calculateDisplayedWord();
   setTimeout(() => {
     chosenWord.style.opacity = 1;
