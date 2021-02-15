@@ -2,15 +2,17 @@ import "./styles.css";
 
 const cylinderContainer = document.querySelector(".cylinder-container");
 const rightFace = document.querySelector(".right-face");
+const cylinderWidth = parseInt(getComputedStyle(cylinderContainer).width);
+const cylinderHalfDepth = cylinderWidth / 2;
 
-for (let i = 0; i < 250; i++) {
+for (let i = 0; i < cylinderWidth; i++) {
   createCylinderFace(i + 1);
 }
 
 function createCylinderFace(distance) {
   const face = document.createElement("div");
   face.classList.add("face");
-  face.style.transform = `translateX(${distance}px) rotateY(-90deg) translateZ(125px)`;
+  face.style.transform = `translateX(${distance}px) rotateY(-90deg) translateZ(${cylinderHalfDepth}px)`;
   cylinderContainer.insertBefore(face, rightFace);
 }
 
@@ -22,13 +24,13 @@ const allCarouselCells = document.querySelectorAll(".carousel__cell"),
   prevBtn = document.getElementById("prev"),
   numOfCells = allCarouselCells.length,
   cellPadding = 15,
-  cellWidth = 100,
+  cellWidth = parseInt(getComputedStyle(cylinderContainer).width),
   cellSize = cellWidth + cellPadding * 2,
   angle = 360 / numOfCells,
-  cylinderDepth = parseInt(getComputedStyle(cylinderContainer).height),
+  cylinderDepth = parseInt(getComputedStyle(cylinderContainer).width),
   // Move carousel cells by half the depth
   tZ = cylinderDepth / 2,
-  // tZ = Math.round(cellSize / 2 / Math.tan(Math.PI / numOfCells)),
+  // tZ = Math.round((cellWidth / 2) / Math.tan(Math.PI / numOfCells)),
   offset = 0,
   chosenWordAnimationTime = 500;
 let rotation = 0;
